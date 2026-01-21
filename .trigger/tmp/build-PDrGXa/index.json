@@ -1,0 +1,71 @@
+{
+  "configPath": "E:\\projects\\Axiom Flow\\axiom-flow\\.trigger\\tmp\\build-PDrGXa\\trigger.config.mjs",
+  "customConditions": [
+  ],
+  "queues": [
+  ],
+  "runtime": "node",
+  "runtimeVersion": "24.11.0",
+  "tasks": [
+    {
+      "entryPoint": "E:\\projects\\Axiom Flow\\axiom-flow\\.trigger\\tmp\\build-PDrGXa\\crop.mjs",
+      "filePath": "src/trigger/crop.ts",
+      "id": "crop-task",
+      "maxDuration": 300,
+      "retry": {
+        "factor": 2,
+        "maxAttempts": 3,
+        "maxTimeoutInMs": 60000,
+        "minTimeoutInMs": 1000,
+        "randomize": true
+      }
+    },
+    {
+      "entryPoint": "E:\\projects\\Axiom Flow\\axiom-flow\\.trigger\\tmp\\build-PDrGXa\\extract.mjs",
+      "filePath": "src/trigger/extract.ts",
+      "id": "extract-task",
+      "maxDuration": 300,
+      "retry": {
+        "factor": 2,
+        "maxAttempts": 3,
+        "maxTimeoutInMs": 60000,
+        "minTimeoutInMs": 1000,
+        "randomize": true
+      }
+    },
+    {
+      "entryPoint": "E:\\projects\\Axiom Flow\\axiom-flow\\.trigger\\tmp\\build-PDrGXa\\llm.mjs",
+      "filePath": "src/trigger/llm.ts",
+      "id": "llm-task",
+      "maxDuration": 300,
+      "retry": {
+        "factor": 2,
+        "maxAttempts": 3,
+        "maxTimeoutInMs": 10000,
+        "minTimeoutInMs": 1000,
+        "randomize": true
+      }
+    },
+    {
+      "entryPoint": "E:\\projects\\Axiom Flow\\axiom-flow\\.trigger\\tmp\\build-PDrGXa\\workflow.mjs",
+      "filePath": "src/trigger/workflow.ts",
+      "id": "execute-workflow",
+      "maxDuration": 300,
+      "retry": {
+        "factor": 2,
+        "maxAttempts": 3,
+        "maxTimeoutInMs": 10000,
+        "minTimeoutInMs": 1000,
+        "randomize": true
+      }
+    }
+  ],
+  "timings": {
+    "src/trigger/crop.ts": 253.44060000000002,
+    "src/trigger/extract.ts": 2.6678000000000566,
+    "src/trigger/llm.ts": 2.880200000000059,
+    "src/trigger/utils.ts": 1.096900000000005,
+    "src/trigger/workflow.ts": 31.163999999999987
+  },
+  "workerEntryPoint": "E:\\projects\\Axiom Flow\\axiom-flow\\.trigger\\tmp\\build-PDrGXa\\dev-run-worker.mjs"
+}

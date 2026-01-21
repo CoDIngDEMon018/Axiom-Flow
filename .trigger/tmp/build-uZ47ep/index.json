@@ -1,0 +1,42 @@
+{
+  "configPath": "E:\\projects\\Axiom Flow\\axiom-flow\\.trigger\\tmp\\build-uZ47ep\\trigger.config.mjs",
+  "customConditions": [
+  ],
+  "queues": [
+  ],
+  "runtime": "node",
+  "runtimeVersion": "24.11.0",
+  "tasks": [
+    {
+      "entryPoint": "E:\\projects\\Axiom Flow\\axiom-flow\\.trigger\\tmp\\build-uZ47ep\\llm.mjs",
+      "filePath": "src/trigger/llm.ts",
+      "id": "llm-task",
+      "maxDuration": 300,
+      "retry": {
+        "factor": 2,
+        "maxAttempts": 3,
+        "maxTimeoutInMs": 10000,
+        "minTimeoutInMs": 1000,
+        "randomize": true
+      }
+    },
+    {
+      "entryPoint": "E:\\projects\\Axiom Flow\\axiom-flow\\.trigger\\tmp\\build-uZ47ep\\workflow.mjs",
+      "filePath": "src/trigger/workflow.ts",
+      "id": "execute-workflow",
+      "maxDuration": 300,
+      "retry": {
+        "factor": 2,
+        "maxAttempts": 3,
+        "maxTimeoutInMs": 10000,
+        "minTimeoutInMs": 1000,
+        "randomize": true
+      }
+    }
+  ],
+  "timings": {
+    "src/trigger/llm.ts": 1.4881000000000029,
+    "src/trigger/workflow.ts": 16.085800000000006
+  },
+  "workerEntryPoint": "E:\\projects\\Axiom Flow\\axiom-flow\\.trigger\\tmp\\build-uZ47ep\\dev-run-worker.mjs"
+}
