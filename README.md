@@ -446,16 +446,52 @@ git push origin main
    - Go to [vercel.com/new](https://vercel.com/new)
    - Select your GitHub repo
    - Set framework to "Next.js"
-   - Configure environment variables
+   - Configure environment variables (see list below)
    - Click "Deploy"
 
 3. **Post-deployment**
-   - Update `NEXT_PUBLIC_APP_URL` in Vercel settings
+   - Update `NEXT_PUBLIC_APP_URL` in Vercel settings to your deployed URL
    - Update Clerk redirect URLs to include your Vercel domain
    - Run Prisma migrate on production DB:
      ```bash
      npx prisma migrate deploy --skip-generate
      ```
+
+### Environment Variables for Vercel
+
+Set these in **Vercel Project Settings → Environment Variables**:
+
+```
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_live_xxxxx
+CLERK_SECRET_KEY=sk_live_xxxxx
+NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL=/dashboard
+NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL=/dashboard
+DATABASE_URL=postgresql://user:pass@host:5432/dbname
+TRIGGER_API_KEY=tr_prod_xxxxx
+GOOGLE_API_KEY=AIza_xxxxx
+NEXT_PUBLIC_TRANSLOADIT_KEY=xxxxx
+TRANSLOADIT_SECRET=xxxxx
+NEXT_PUBLIC_TRANSLOADIT_TEMPLATE_ID=xxxxx
+NEXT_PUBLIC_APP_URL=https://your-app.vercel.app
+NODE_ENV=production
+```
+
+### Troubleshooting Vercel Deployment
+
+**Issue: "Prisma has detected that this project was built on Vercel"**
+
+✅ **Fixed**: The `package.json` includes a `postinstall` script that runs `prisma generate` automatically.
+
+If you still encounter Prisma issues:
+1. Verify `postinstall` script exists in `package.json`:
+   ```json
+   "scripts": {
+     "postinstall": "prisma generate"
+   }
+   ```
+2. Check Vercel build logs for Prisma generation
+3. Ensure `DATABASE_URL` is set in Vercel environment variables
+4. Redeploy after adding environment variables
 
 ---
 
