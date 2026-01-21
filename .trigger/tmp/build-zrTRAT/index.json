@@ -1,0 +1,71 @@
+{
+  "configPath": "E:\\projects\\Axiom Flow\\axiom-flow\\.trigger\\tmp\\build-zrTRAT\\trigger.config.mjs",
+  "customConditions": [
+  ],
+  "queues": [
+  ],
+  "runtime": "node",
+  "runtimeVersion": "24.11.0",
+  "tasks": [
+    {
+      "entryPoint": "E:\\projects\\Axiom Flow\\axiom-flow\\.trigger\\tmp\\build-zrTRAT\\crop.mjs",
+      "filePath": "src/trigger/crop.ts",
+      "id": "crop-task",
+      "maxDuration": 300,
+      "retry": {
+        "factor": 2,
+        "maxAttempts": 3,
+        "maxTimeoutInMs": 60000,
+        "minTimeoutInMs": 1000,
+        "randomize": true
+      }
+    },
+    {
+      "entryPoint": "E:\\projects\\Axiom Flow\\axiom-flow\\.trigger\\tmp\\build-zrTRAT\\extract.mjs",
+      "filePath": "src/trigger/extract.ts",
+      "id": "extract-task",
+      "maxDuration": 300,
+      "retry": {
+        "factor": 2,
+        "maxAttempts": 3,
+        "maxTimeoutInMs": 60000,
+        "minTimeoutInMs": 1000,
+        "randomize": true
+      }
+    },
+    {
+      "entryPoint": "E:\\projects\\Axiom Flow\\axiom-flow\\.trigger\\tmp\\build-zrTRAT\\llm.mjs",
+      "filePath": "src/trigger/llm.ts",
+      "id": "llm-task",
+      "maxDuration": 300,
+      "retry": {
+        "factor": 2,
+        "maxAttempts": 3,
+        "maxTimeoutInMs": 10000,
+        "minTimeoutInMs": 1000,
+        "randomize": true
+      }
+    },
+    {
+      "entryPoint": "E:\\projects\\Axiom Flow\\axiom-flow\\.trigger\\tmp\\build-zrTRAT\\workflow.mjs",
+      "filePath": "src/trigger/workflow.ts",
+      "id": "execute-workflow",
+      "maxDuration": 300,
+      "retry": {
+        "factor": 2,
+        "maxAttempts": 3,
+        "maxTimeoutInMs": 10000,
+        "minTimeoutInMs": 1000,
+        "randomize": true
+      }
+    }
+  ],
+  "timings": {
+    "src/trigger/crop.ts": 168.86280000000005,
+    "src/trigger/extract.ts": 0.9782000000000153,
+    "src/trigger/llm.ts": 1.328200000000038,
+    "src/trigger/utils.ts": 0.4379999999999882,
+    "src/trigger/workflow.ts": 15.80320000000006
+  },
+  "workerEntryPoint": "E:\\projects\\Axiom Flow\\axiom-flow\\.trigger\\tmp\\build-zrTRAT\\dev-run-worker.mjs"
+}

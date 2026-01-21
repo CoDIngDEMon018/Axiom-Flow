@@ -6075,20 +6075,19 @@ var executeWorkflow = task({
       for (let phaseIndex = 0; phaseIndex < phases.length; phaseIndex++) {
         const phase = phases[phaseIndex];
         console.log(`[Workflow] Phase ${phaseIndex + 1}/${phases.length}: ${phase.join(", ")}`);
-        await Promise.all(
-          phase.map(
-            (nodeId) => prisma.nodeRun.create({
+        for (const nodeId of phase) {
+          try {
+            await prisma.nodeRun.create({
               data: {
                 runHistoryId: runId,
                 nodeId,
                 status: "Running",
                 inputs: {}
               }
-            }).catch(() => {
-            })
-            // Ignore if already exists
-          )
-        );
+            });
+          } catch (e) {
+          }
+        }
         const phasePromises = phase.map(async (nodeId) => {
           const node = nodes.find((n) => n.id === nodeId);
           if (!node) {

@@ -35,19 +35,21 @@ export const executeWorkflow = task({
                 const phase = phases[phaseIndex];
                 console.log(`[Workflow] Phase ${phaseIndex + 1}/${phases.length}: ${phase.join(', ')}`);
 
-                // Mark all nodes in this phase as "Running" in DB
-                await Promise.all(
-                    phase.map(nodeId =>
-                        prisma.nodeRun.create({
+                // Mark all nodes in this phase as "Running" in DB (Sequential to save DB connections)
+                for (const nodeId of phase) {
+                    try {
+                        await prisma.nodeRun.create({
                             data: {
                                 runHistoryId: runId,
                                 nodeId,
                                 status: "Running",
                                 inputs: {} as any,
                             }
-                        }).catch(() => { }) // Ignore if already exists
-                    )
-                );
+                        });
+                    } catch (e) {
+                        // Ignore if already exists or fails
+                    }
+                }
 
                 // Execute all nodes in this phase in PARALLEL using Promise.all
                 const phasePromises = phase.map(async (nodeId) => {
