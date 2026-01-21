@@ -5,6 +5,8 @@ import { prisma } from '@/lib/prisma';
 import { auth } from '@clerk/nextjs/server';
 import { z } from 'zod';
 
+export const dynamic = 'force-dynamic';
+
 const runNodeSchema = z.object({
     nodeId: z.string(),
     nodes: z.array(z.any()),

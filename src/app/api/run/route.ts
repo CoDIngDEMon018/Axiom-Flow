@@ -5,6 +5,8 @@ import { prisma } from '@/lib/prisma';
 import { runWorkflowSchema } from '@/lib/validation';
 import { auth } from '@clerk/nextjs/server';
 
+export const dynamic = 'force-dynamic';
+
 // Import our task identifiers (we usually reference them by string ID in invoke)
 // or import the task object if we want types. 
 // For v3, strict "trigger" from backend often uses the `tasks.trigger` 

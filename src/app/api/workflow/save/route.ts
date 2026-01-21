@@ -3,6 +3,8 @@ import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { z } from "zod";
 
+export const dynamic = 'force-dynamic';
+
 const SaveWorkflowSchema = z.object({
     name: z.string().min(1, "Workflow name is required"),
     nodes: z.array(z.any()),
